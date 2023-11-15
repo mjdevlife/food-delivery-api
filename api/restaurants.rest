@@ -1,0 +1,40 @@
+# Pass query param search -> searches and filters records
+# Pass pagination query params
+    #1. page -> specifies the page number
+    #2 size -> specifies the total items per page
+GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants?search=&page=&size=
+Content-Type: application/json
+
+
+### CREATE A NEW RESTAURANT
+POST http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+{
+  "name": "Uber Eats",
+  "phone": "+233542433868",
+  "address": "Accra"
+}
+
+### UPDATE A RESTAURANT DETAILS EITHER -> ONLY USER WHO CREATED RECORD OR SYSTEM ADMIN CAN PERFORM THIS OPERATION
+PATCH http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants/2
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+{
+  "name": "WATER REED",
+  "phone": "+233542433262",
+  "address": "Adenta, Asylum Down"
+}
+
+### GET  A RESTAURANT BY ID
+GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants/2
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+
+### DELETE A RESTAURANT BY ID -> ONLY USER WHO CREATED RECORD OR SYSTEM ADMIN CAN PERFORM THIS OPERATION
+DELETE http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants/1
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
